@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BEAC6E53228AF4AB0004AF86 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAC6E52228AF4AB0004AF86 /* main.swift */; };
+		BEAC6E5E228AF5130004AF86 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BEAC6E5C228AF5130004AF86 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +24,9 @@
 
 /* Begin PBXFileReference section */
 		BEAC6E4F228AF4AB0004AF86 /* Process */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Process; sourceTree = BUILT_PRODUCTS_DIR; };
-		BEAC6E52228AF4AB0004AF86 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		BEAC6E5A228AF4CE0004AF86 /* Process.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Process.h; sourceTree = "<group>"; };
+		BEAC6E5B228AF4D80004AF86 /* Processes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Processes.h; sourceTree = "<group>"; };
+		BEAC6E5C228AF5130004AF86 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +59,9 @@
 		BEAC6E51228AF4AB0004AF86 /* Process */ = {
 			isa = PBXGroup;
 			children = (
-				BEAC6E52228AF4AB0004AF86 /* main.swift */,
+				BEAC6E5C228AF5130004AF86 /* main.cpp */,
+				BEAC6E5A228AF4CE0004AF86 /* Process.h */,
+				BEAC6E5B228AF4D80004AF86 /* Processes.h */,
 			);
 			path = Process;
 			sourceTree = "<group>";
@@ -119,7 +123,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEAC6E53228AF4AB0004AF86 /* main.swift in Sources */,
+				BEAC6E5E228AF5130004AF86 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
