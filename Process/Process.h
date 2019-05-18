@@ -16,17 +16,19 @@ using namespace std;
 
 class Process {
 public:
-    string ID;//进程ID
-    int arrivalTime;//到达时间
-    int serviceTime;//服务时间
-    int finishTime;//完成时间
-    int wholeTime;//周转时间
-    double weightWholeTime;//带权周转时间
+    string ID;// 进程ID
+    int arrivalTime;// 到达时间
+    int serviceTime;// 服务时间
+    int finishTime;// 完成时间
+    int wholeTime;// 周转时间
+    double weightWholeTime;// 带权周转时间
     
-    bool executed = false;//判断是否已执行
+    double priority;// 优先权(目前仅用于 高响应比优先 / HRRN 算法中)
     
-    int WholeTime() { return wholeTime = finishTime - arrivalTime; }//计算周转时间
-    double WeightWholeTime() { return weightWholeTime = double(wholeTime) / double(serviceTime); }//计算带权周转时间
+    bool executed = false;// 判断是否已执行
+    
+    int WholeTime() { return wholeTime = finishTime - arrivalTime; }// 计算周转时间
+    double WeightWholeTime() { return weightWholeTime = double(wholeTime) / double(serviceTime); }// 计算带权周转时间
     
     Process(): ID(""), arrivalTime(0), serviceTime(0), executed(false) {}
     
