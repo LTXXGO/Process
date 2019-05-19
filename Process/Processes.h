@@ -31,29 +31,26 @@ public:
     Processes() {
         size = 0;
         processes = new Process[size];
+        executableProcess = new Process[size];
     }
     Processes(int n) {
         size = n;
         processes = new Process[size];
+        executableProcess = new Process[size];
     }
     
-    // 先来先服务 / FCFS 算法
-    void FCFS();
-    // 短作业优先 / SJF 算法
-    void SJF();
-    // 高响应比优先 / HRRN 算法
-    void HRRN();
-    // 时间片轮转算法
-    void RR(int q);
+    // 调度算法
+    void FCFS();// 先来先服务 / FCFS 算法
+    void SJF();// 短作业优先 / SJF 算法
+    void HRRN();// 高响应比优先 / HRRN 算法
+    void RR(int q);// 时间片轮转算法
     
-    // 计算平均时间
-    void calculateAverage();
-    // 测试输出函数
-    void PrintToConsole();
-        // 输出平均时间
-    void averageOutput();
-        // 输出每一时刻计算机状态
-    void ExecutionStatus();
+    //辅助函数
+    void calculateAverage();// 计算平均时间
+    void PrintToConsole();// 将测试内容打印到控制台
+    void averageOutput();// 输出平均时间
+    void ExecutionStatus();// 输出每一时刻计算机状态
+    
 };
 
 // MARK: - 先来先服务 / FCFS 算法
@@ -249,6 +246,10 @@ void Processes::RR(int q) {
             }
         }
     }
+    // 计算平均值
+    calculateAverage();
+    // 输出到控制台
+    PrintToConsole();
 }
 
 // MARK: - 计算平均周转时间和带权平均周转时间

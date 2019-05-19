@@ -40,6 +40,11 @@ int main() {
     processes.FCFS();
     cout << "SJF: " << endl;
     processes.SJF();
+    cout << "HRRN: " << endl;
+    processes.HRRN();
+    int q = 2;
+    cout << "RR, q = " << q << ": " << endl;
+    processes.RR(q);
     
     return 0;
 }
