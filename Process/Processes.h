@@ -16,16 +16,16 @@
 #include "Process.h"
 
 class Processes {
+private:
+    int now = 0;// 当前时刻
+    int numberOfExecutedProcess = 0;// 已执行过的进程数量，用于判断是否全部执行完毕
+    Process * executableProcess;// 存放当前可执行的进程的数组
+    int numberOfExecutableProcesses;// 当前的可执行进程数
 public:
     int size;// 进程数量
     Process * processes;// 进程数组
     double averageWholeTime;// 平均周转时间
     double averageWeightWholeTime;// 平均带权周转时间
-    
-    int now = 0;// 当前时刻
-    int numberOfExecutedProcess = 0;// 已执行过的进程数量，用于判断是否全部执行完毕
-    Process * executableProcess;// 存放当前可执行的进程的数组
-    int numberOfExecutableProcesses;// 当前的可执行进程数
     
     // 构造函数
     Processes() {
@@ -48,9 +48,8 @@ public:
     //辅助函数
     void calculateAverage();// 计算平均时间
     void PrintToConsole();// 将测试内容打印到控制台
-    void averageOutput();// 输出平均时间
+    void averageOutput();// 输出平均周转时间和平均带权周转时间
     void ExecutionStatus();// 输出每一时刻计算机状态
-    
 };
 
 // MARK: - 先来先服务 / FCFS 算法

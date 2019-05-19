@@ -36,7 +36,7 @@ int main() {
     processes.processes[4].serviceTime = 2;
     
     cout << "FCFS: " << endl;
-    // FCFS()函数中包含输出函数, 下同
+    // 算法函数中包含输出函数, 下同
     processes.FCFS();
     cout << "SJF: " << endl;
     processes.SJF();
