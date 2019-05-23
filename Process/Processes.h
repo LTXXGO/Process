@@ -26,6 +26,7 @@ public:
     Process * processes;// 进程数组
     double averageWholeTime;// 平均周转时间
     double averageWeightWholeTime;// 平均带权周转时间
+    int totalServiceTime();// 返回总服务时间
     
     // 构造函数
     Processes() {
@@ -182,6 +183,7 @@ void Processes::HRRN() {
 
 // MARK: - 时间片轮转 / RR 算法
 void Processes::RR(int q) {
+    executableProcess = new Process[totalServiceTime()];
     // 执行第一个进程
     // 判断在当前时间片进程是否可以执行完毕
     if(processes[0].serviceTime <= q) {
@@ -211,32 +213,48 @@ void Processes::RR(int q) {
     // 判断是否传入函数的所有进程都已执行过
     while (numberOfExecutedProcess < size) {
         for (int i = 0; i < numberOfExecutableProcesses; i += 1) {
-            // 从now开始执行可执行进程数组中的第一个进程
+            // 从now开始执行可执行进程数组中的当前进程
             // 如果进程剩余服务时间小于或等于时间片长度, 即在本时间片内可执行完毕
             if(executableProcess[i].serviceTime <= q) {
                 // 执行完成processes数组中相对应的进程
                 for (int j = 0; j < size; j += 1) {
-                    if(executableProcess[j].ID == processes[j].ID) {
-                        processes[j].finishTime = now + executableProcess[j].serviceTime;
+                    if(executableProcess[i].ID == processes[j].ID) {
+                        processes[j].finishTime = now + executableProcess[i].serviceTime;
                         processes[j].WholeTime();
                         processes[j].WeightWholeTime();
                         processes[j].executed = true;
                         numberOfExecutedProcess += 1;
+                        // 如果最后一个进程的到达时间在当前时间之后
+                        if (now < processes[size - 1].arrivalTime) {
+                            // 判断在当前时间片内已到达程序有哪些
+                            for(int j = 1; j < size; j += 1) {
+                                if(processes[j].arrivalTime <= now + executableProcess[i].serviceTime && processes[j].arrivalTime > now) {
+                                    // 若进程到达时间在当前时间片内, 则当前可执行进程数增加1
+                                    executableProcess[numberOfExecutableProcesses] = processes[j];
+                                    numberOfExecutableProcesses += 1;
+                                }
+                            }
+                        }
                         // 执行完之后更新当前时间
-                        now = processes[i].finishTime;
+                        now = processes[j].finishTime;
                         break;
                     }
                 }
             } else {
-                now = now + q;
-                // 判断在当前时间片内已到达程序有哪些
-                for(int j = 1; j < size; j += 1) {
-                    if(processes[j].arrivalTime <= now && processes[j].arrivalTime > now - q) {
-                        // 若进程到达时间在当前时间片内, 则当前可执行进程数增加1
-                        executableProcess[numberOfExecutableProcesses] = processes[j];
-                        numberOfExecutableProcesses += 1;
+                // 如果最后一个进程的到达时间在当前时间之后
+                if (now < processes[size - 1].arrivalTime) {
+                    // 判断在当前时间片内已到达程序有哪些
+                    for(int j = 1; j < size; j += 1) {
+                        // 包括(now, now + q]
+                        if(processes[j].arrivalTime <= now + q && processes[j].arrivalTime > now) {
+                            // 若进程到达时间在当前时间片内, 则当前可执行进程数增加1
+                            executableProcess[numberOfExecutableProcesses] = processes[j];
+                            numberOfExecutableProcesses += 1;
+                        }
                     }
                 }
+                // 更新当前时间
+                now = now + q;
                 // 把当前时间片未执行完成的进程加入可执行进程数组的末尾
                 executableProcess[numberOfExecutableProcesses] = executableProcess[i];
                 // 更新当前时间片未执行完成的进程的服务时间为剩余服务时间
@@ -249,6 +267,15 @@ void Processes::RR(int q) {
     calculateAverage();
     // 输出到控制台
     PrintToConsole();
+}
+
+// MARK: - 返回总服务时间
+int Processes::totalServiceTime() {
+    int total = 0;
+    for (int i = 0; i < size; i += 1) {
+        total += processes[i].serviceTime;
+    }
+    return total;
 }
 
 // MARK: - 计算平均周转时间和带权平均周转时间
