@@ -27,6 +27,7 @@
 		BEAC6E5A228AF4CE0004AF86 /* Process.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Process.h; sourceTree = "<group>"; };
 		BEAC6E5B228AF4D80004AF86 /* Processes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Processes.h; sourceTree = "<group>"; };
 		BEAC6E5C228AF5130004AF86 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		BEDB54F322967861004C5378 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +44,7 @@
 		BEAC6E46228AF4AB0004AF86 = {
 			isa = PBXGroup;
 			children = (
+				BEDB54F322967861004C5378 /* README.md */,
 				BEAC6E51228AF4AB0004AF86 /* Process */,
 				BEAC6E50228AF4AB0004AF86 /* Products */,
 			);
