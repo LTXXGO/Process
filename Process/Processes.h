@@ -85,6 +85,10 @@ void Processes::FCFS() {
 void Processes::SJF() {
     Process minServiceTimeProcess;// 用于暂时存储最短服务时间进程的变量
     now = 0;
+    numberOfExecutableProcesses = 0;
+    numberOfExecutedProcess = 0;
+    // 执行第一个进程
+    execution(processes[0]);
     // 判断是否传入函数的所有进程都已执行过
     while (numberOfExecutedProcess < size) {
         // 更新可执行程序数量为0
@@ -94,7 +98,7 @@ void Processes::SJF() {
         // 在已到达的可执行进程中找出服务时间最短的进程
         minServiceTimeProcess = executableProcesses[0];
         for (int i = 1; i < numberOfExecutableProcesses; i += 1) {
-            if (executableProcesses[i].serviceTime < minServiceTimeProcess.serviceTime) {
+            if(executableProcesses[i].serviceTime < minServiceTimeProcess.serviceTime) {
                 minServiceTimeProcess = executableProcesses[i];
             }
         }
@@ -111,31 +115,19 @@ void Processes::SJF() {
 void Processes::HRRN() {
     Process highestPriorityProcess;// 用于暂时存储优先权 / 响应比最高的进程的变量
     now = 0;
+    numberOfExecutableProcesses = 0;
+    numberOfExecutedProcess = 0;
     // 执行第一个到达的进程
-    processes[0].finishTime = processes[0].serviceTime;
-    processes[0].WholeTime();
-    processes[0].WeightWholeTime();
-    processes[0].executed = true;
-    numberOfExecutedProcess = 1;
-    // 更新当前时间
-    now = processes[0].finishTime;
+    execution(processes[0]);
     // 判断是否传入函数的所有进程都已执行过
     while (numberOfExecutedProcess < size) {
-        // 更新可执行程序数量为0
         numberOfExecutableProcesses = 0;
-        // 判断其他进程是否到达
-        for (int i = 1; i < size; i += 1) {
-            if (processes[i].arrivalTime <= now && !processes[i].executed) {
-                // 若进程到达时间在现在以前并且还未执行过, 则当前可执行进程数增加1
-                executableProcesses[numberOfExecutableProcesses] = processes[i];
-                numberOfExecutableProcesses += 1;
-                // 计算响应比(优先权)
-                processes[i].priority = (now - processes[i].arrivalTime + processes[i].serviceTime) / processes[i].serviceTime;
-            }
-        }
+        otherProcessesArrival(0, now);
         // 找出当前已到达进程中拥有最高响应比 / 优先权的进程
         highestPriorityProcess = executableProcesses[0];
         for (int i = 1; i < numberOfExecutableProcesses; i += 1) {
+            // 计算响应比(优先权)
+            processes[i].priority = (now - processes[i].arrivalTime + processes[i].serviceTime) / processes[i].serviceTime;
             if (executableProcesses[i].priority > highestPriorityProcess.priority) {
                 highestPriorityProcess = executableProcesses[i];
             }
@@ -153,6 +145,8 @@ void Processes::HRRN() {
 void Processes::RR(int q) {
     executableProcesses = new Process[totalServiceTime()];
     now = 0;
+    numberOfExecutableProcesses = 0;
+    numberOfExecutedProcess = 0;
     // 将第一个进程加入可执行进程数组
     executableProcesses[numberOfExecutableProcesses] = processes[0];
     numberOfExecutableProcesses += 1;
