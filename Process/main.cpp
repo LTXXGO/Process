@@ -38,17 +38,21 @@ int main() {
 //    cout << "FCFS: " << endl;
 //    // 算法函数中包含输出函数, 下同
 //    processes.FCFS();
-//    cout << "SJF: " << endl;
-//    processes.SJF();
+    
+    cout << "SJF: " << endl;
+    processes.SJF();
+    
 //    cout << "HRRN: " << endl;
 //    processes.HRRN();
-    int q = 2;
+    
+//    int q = 2;
 //    cout << "RR, q = " << q << ": " << endl;
 //    processes.RR(q);
 //    cout << endl;
-    q = 4;
-    cout << "RR, q = " << q << ": " << endl;
-    processes.RR(q);
+    
+//    q = 4;
+//    cout << "RR, q = " << q << ": " << endl;
+//    processes.RR(q);
     
     return 0;
 }

@@ -77,14 +77,7 @@ void Processes::FCFS() {
 void Processes::SJF() {
     int minServiceTime;// 最短服务时间
     Process minServiceTimeProcess;// 用于暂时存储最短服务时间进程的变量
-    // 执行第一个进程
-    processes[0].finishTime = processes[0].arrivalTime + processes[0].serviceTime;
-    processes[0].WholeTime();
-    processes[0].WeightWholeTime();
-    processes[0].executed = true;
-    numberOfExecutedProcess = 1;
-    // 更新当前时间
-    now = processes[0].finishTime;
+    now = 0;
     // 判断是否传入函数的所有进程都已执行过
     while (numberOfExecutedProcess < size) {
         // 更新可执行程序数量为0
