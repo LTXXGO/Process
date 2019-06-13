@@ -65,5 +65,35 @@ int main() {
     processes.RR(q);
     cout << endl;
     
+    // 取消下列注释以从键盘选择算法
+    /*
+    cout << "选择算法,1-FCFS,2-SJF,3-HRRN,4-RR: ";
+    int n;
+    cin >> n;
+    switch (n) {
+        case 1:
+            cout << "FCFS: " << endl;
+            // 算法函数中包含输出函数, 下同
+            processes.FCFS();
+            break;
+        case 2:
+            cout << "SJF: " << endl;
+            processes.SJF();
+        case 3:
+            cout << "HRRN: " << endl;
+            processes.HRRN();
+        case 4:
+            cout << "RR: " << endl;
+            int q;
+            cout << "输入时间片长度(整数): ";
+            cin >> q;
+            cout << "q = " << q << ": " << endl;
+            processes.RR(q);
+            cout << endl;
+        default:
+            return 0;
+    }
+     */
+    
     return 0;
 }

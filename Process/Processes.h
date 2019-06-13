@@ -21,6 +21,12 @@ private:
     int numberOfExecutedProcess;// 已执行过的进程数量，用于判断是否全部执行完毕
     Process * executableProcesses;// 存放当前可执行的进程的数组
     int numberOfExecutableProcesses;// 当前的可执行进程数
+    // 重置进程的已执行属性
+    void restore() {
+        for (int i = 0; i < size; i++) {
+            processes[i].executed = false;
+        }
+    }
 public:
     int size;// 进程数量
     Process * processes;// 进程数组
@@ -79,6 +85,7 @@ void Processes::FCFS() {
     calculateAverage();
     // 输出到控制台
     PrintToConsole();
+    restore();
 }
 
 // MARK: - 短作业优先 / SJF 算法
@@ -109,6 +116,7 @@ void Processes::SJF() {
     calculateAverage();
     // 输出到控制台
     PrintToConsole();
+    restore();
 }
 
 // MARK: - 高响应比优先 / HRRN 算法
@@ -139,6 +147,7 @@ void Processes::HRRN() {
     calculateAverage();
     // 输出到控制台
     PrintToConsole();
+    restore();
 }
 
 // MARK: - 时间片轮转 / RR 算法
@@ -181,6 +190,7 @@ void Processes::RR(int q) {
     calculateAverage();
     // 输出到控制台
     PrintToConsole();
+    restore();
 }
 
 // MARK: - 辅助函数
