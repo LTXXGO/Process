@@ -271,6 +271,7 @@ void Processes::ExecutionStatus()  {
             }
         }
     }
+    cout << "-----------------------" << endl;
 }
 
 // 输出到控制台

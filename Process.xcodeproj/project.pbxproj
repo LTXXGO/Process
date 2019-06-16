@@ -23,6 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BE4786A822B5D9F800F1705D /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		BEAC6E4F228AF4AB0004AF86 /* Process */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Process; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEAC6E5A228AF4CE0004AF86 /* Process.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Process.h; sourceTree = "<group>"; };
 		BEAC6E5B228AF4D80004AF86 /* Processes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Processes.h; sourceTree = "<group>"; };
@@ -45,6 +46,7 @@
 			isa = PBXGroup;
 			children = (
 				BEDB54F322967861004C5378 /* README.md */,
+				BE4786A822B5D9F800F1705D /* LICENSE */,
 				BEAC6E51228AF4AB0004AF86 /* Process */,
 				BEAC6E50228AF4AB0004AF86 /* Products */,
 			);
