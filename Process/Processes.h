@@ -21,11 +21,14 @@ private:
     int numberOfExecutedProcess;// 已执行过的进程数量，用于判断是否全部执行完毕
     Process * executableProcesses;// 存放当前可执行的进程的数组
     int numberOfExecutableProcesses;// 当前的可执行进程数
-    // 重置进程的已执行属性
+    // 重置
     void restore() {
         for (int i = 0; i < size; i++) {
             processes[i].executed = false;
         }
+        now = 0;
+        numberOfExecutableProcesses = 0;
+        numberOfExecutedProcess = 0;
     }
 public:
     int size;// 进程数量
@@ -84,9 +87,6 @@ void Processes::FCFS() {
 // MARK: - 短作业优先 / SJF 算法
 void Processes::SJF() {
     Process minServiceTimeProcess;// 用于暂时存储最短服务时间进程的变量
-    now = 0;
-    numberOfExecutableProcesses = 0;
-    numberOfExecutedProcess = 0;
     // 执行第一个进程
     execution(processes[0]);
     // 判断是否传入函数的所有进程都已执行过
@@ -115,9 +115,6 @@ void Processes::SJF() {
 // MARK: - 高响应比优先 / HRRN 算法
 void Processes::HRRN() {
     Process highestPriorityProcess;// 用于暂时存储优先权 / 响应比最高的进程的变量
-    now = 0;
-    numberOfExecutableProcesses = 0;
-    numberOfExecutedProcess = 0;
     // 执行第一个到达的进程
     execution(processes[0]);
     // 判断是否传入函数的所有进程都已执行过
@@ -146,9 +143,6 @@ void Processes::HRRN() {
 // MARK: - 时间片轮转 / RR 算法
 void Processes::RR(int q) {
     executableProcesses = new Process[totalServiceTime()];
-    now = 0;
-    numberOfExecutableProcesses = 0;
-    numberOfExecutedProcess = 0;
     // 将第一个进程加入可执行进程数组
     executableProcesses[numberOfExecutableProcesses] = processes[0];
     numberOfExecutableProcesses += 1;
