@@ -69,17 +69,10 @@ public:
 
 // MARK: - 先来先服务 / FCFS 算法
 void Processes::FCFS() {
-    // 循环模拟执行过程并计算
+    now = 0;
+    // 依次执行到达进程
     for (int i = 0; i < size; i += 1) {
-        // 计算完成时间
-        if (i == 0) {
-            processes[0].finishTime = processes[0].arrivalTime + processes[0].serviceTime;
-        } else {
-            processes[i].finishTime = processes[i - 1].finishTime + processes[i].serviceTime;
-        }
-        // 计算周转时间和带权周转时间
-        processes[i].WholeTime();
-        processes[i].WeightWholeTime();
+        execution(processes[i]);
     }
     // 计算平均值
     calculateAverage();
